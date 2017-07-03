@@ -10,7 +10,7 @@ The by default the import data is not in the container. You should bindmount it.
 docker run --rm \
   -v /path/to/your/data:/payload/data \
   -v /path/for/logs:/payload/software/log \
-  --link your-es-container:es docker-nba-etl:V2.3 ./import-all.sh
+  --link your-es-container:es docker-nba-etl:V2.3 ./import-all
 ```
 Your data directory (/path/to/your/data) should contain the folders
 ```
@@ -77,11 +77,20 @@ Will download data for nsr,medialib,crs,col and brahms and run `./import_all`
 The data directory to which the data will be cloned is `/payload/data` + the last part of the git repository name. So nba-brondata-nsr
 will be cloned to `/payload/data/nsr`
 
+You can change the repository branch or tag, for example `nba-brondata-media:prisma-test`
+
 If you for example just want to import Geo you run
 ```shell
 docker run --name geo-import-job \
     -e REPOS="nba-brondata-geo:master" \
     -e IMPORT_COMMAND="./bootstrap GeoAreas && ./geo-import" \
-    -e "AUTO_IMPORT=TRUE"
-    docker-nba-etl:V2.3-20-g461dab56
+    -e "AUTO_IMPORT=TRUE" \
+    --rm \
+    -d \
+    -v /local/path/for/logs:/payload/software/log \
+    --link <your-es-container>:es \
+    docker-nba-etl:V2.4
 ```
+
+The container then will run the download the Geoarea data, run in the import and after the import the container will be stopped and deleted.
+The logs will be saved at /local/path/for/logs (you should change this to a path that exists)
