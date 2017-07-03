@@ -77,14 +77,14 @@ Will download data for nsr,medialib,crs,col and brahms and run `./import_all`
 The data directory to which the data will be cloned is `/payload/data` + the last part of the git repository name. So nba-brondata-nsr
 will be cloned to `/payload/data/nsr`
 
-You can change the repository branch or tag, for example `nba-brondata-media:prisma-test`
+You can change the repository branch or tag, for example `nba-brondata-media:prisma-test`. If you want to download multiple repositores, seperate them with a comma. 
 
 If you for example just want to import Geo you run
 ```shell
 docker run --name geo-import-job \
     -e REPOS="nba-brondata-geo:master" \
     -e IMPORT_COMMAND="./bootstrap GeoAreas && ./geo-import" \
-    -e "AUTO_IMPORT=TRUE" \
+    -e AUTO_IMPORT="TRUE" \
     --rm \
     -d \
     -v /local/path/for/logs:/payload/software/log \
