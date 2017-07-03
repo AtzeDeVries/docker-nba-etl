@@ -92,5 +92,8 @@ docker run --name geo-import-job \
     docker-nba-etl:V2.4
 ```
 
+To find <your-es-container> run `docker ps` and search for the name of the elasticsearch container.
+
+
 The container then will run the download the Geoarea data, run in the import and after the import the container will be stopped and deleted.
 The logs will be saved at /local/path/for/logs (you should change this to a path that exists)
