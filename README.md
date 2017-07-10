@@ -32,6 +32,7 @@ NBA_INDEX_NAME=nba
 COL_YEAR=2016
 PURL_BASE_URL=''
 TEST_GENERA=#test_genera=malus,parus,larus,bombus,rhododendron,felix,tulipa,rosa,canis,passer,trientalis
+DISABLE_TRUNCATE=FALSE
 ```
 
 

@@ -36,6 +36,15 @@ EOF
 echo patch for testset
 sed -i "s/#test_genera.*/$TEST_GENERA/g" /payload/software/sh/include.sh
 
+# enable/disable truncate (default true)
+# only available for BRAHMS at the moment
+
+if [ "$DISABLE_TRUNCATE" = "TRUE" ]
+then
+    echo "disableing truncate (truncate=false in include.sh)"
+    sed -i "s/truncate=true/truncate=false/g" /payload/software/sh/include.sh
+fi
+
 # patch log4j.xml
 if [ "$CONSOLE_LOG" = "TRUE" ]
 then
