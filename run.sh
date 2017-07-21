@@ -1,6 +1,9 @@
 #!/bin/sh
 
 #PATCH nba.properties
+
+if [ "$PATCH_PROPERTIES" = "TRUE" ]
+then
 echo patching nba.properties 
 cat > /payload/software/conf/nba.properties  <<EOF
 elasticsearch.cluster.name=nba-cluster
@@ -28,7 +31,7 @@ medialib.data.dir=/payload/data/medialib
 col.year=$COL_YEAR
 purl.baseurl=$PURL_BASE_URL
 EOF
-
+fi
 
 # patch tesset
 echo patch for testset
